@@ -1,0 +1,16 @@
+{
+  "name": "re-naukri",
+  "version": "1.0.0",
+  "description": "This Node.js script automates the process of updating your Naukri.com profile's resume headline using Puppeteer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["naukri, naukri.com, script"],
+  "author": "MYSTYX",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "puppeteer": "^22.10.0"
+  }
+}
