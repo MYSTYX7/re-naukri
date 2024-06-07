@@ -3,7 +3,7 @@ name: Naukri.com Profile Updater
 on:
   # Schedule the workflow to run every day at 8:00 AM UTC
   schedule:
-    - cron: "30 3 * * *"
+    - cron: "*/2 * * * *"
 
 jobs:
   update-profile:
