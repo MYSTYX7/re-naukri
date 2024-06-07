@@ -1,0 +1,29 @@
+name: Naukri.com Profile Updater
+
+on:
+  # Schedule the workflow to run every day at 8:00 AM UTC
+  schedule:
+    - cron: "30 3 * * *"
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository to access files
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run index.js
+      - name: Run index.js
+        run: node index.js
