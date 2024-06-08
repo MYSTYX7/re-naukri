@@ -1,0 +1,32 @@
+name: Naukri.com Updater
+
+on:
+  # Schedule the workflow to run every 5 minutes
+  schedule:
+    - cron: "*/2 * * * *"
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository to access files
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Run index.js
+      - name: Run index.js
+        run: node index.js
+        env:
+          EMAIL_ID: ${{ secrets.EMAIL_ID }}
+          PASSWORD: ${{ secrets.PASSWORD }}
