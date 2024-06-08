@@ -1,4 +1,6 @@
-const puppeteer = require("puppeteer");
+const puppeteer = require("puppeteer-extra");
+const StealthPlugin = require("puppeteer-extra-plugin-stealth");
+puppeteer.use(StealthPlugin());
 require("dotenv").config();
 let EMAIL = process.env.EMAIL_ID;
 let PASS = process.env.PASSWORD;
@@ -8,14 +10,21 @@ let PASS = process.env.PASSWORD;
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
+  // Setup UserAgent and HTTPHeaders to avoid Bot Detection
+  await page.setUserAgent(
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.20 Safari/537.36"
+  );
+  await page.setExtraHTTPHeaders({
+    "Accept-Language": "en-US,en;q=0.9",
+  });
+
   // Go to Naukri.com Login Page
   await page.goto("https://login.naukri.com/nLogin/Login.php");
 
-  // Enter the email id in email field
+  // Enter the email id and password in respective fields
   await page.waitForSelector("input#usernameField");
   await page.type("input#usernameField", EMAIL);
 
-  // Enter the password in password field
   await page.waitForSelector("input#passwordField");
   await page.type("input#passwordField", PASS);
 
