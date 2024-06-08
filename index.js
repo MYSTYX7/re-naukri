@@ -10,7 +10,7 @@ const { executablePath } = require("puppeteer");
 (async () => {
   // Launch the browser
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: true, // Change it to false if you want to see the bot working on local machine
     executablePath: executablePath(),
   });
   const page = await browser.newPage();
@@ -24,7 +24,7 @@ const { executablePath } = require("puppeteer");
   });
 
   // Go to Naukri.com Login Page
-  await page.goto("https://login.naukri.com/nLogin/Login.php", { timeout: 0 });
+  await page.goto("https://login.naukri.com/nLogin/Login.php");
 
   // Enter the email id and password in respective fields
   await page.waitForSelector("input#usernameField");
@@ -38,12 +38,8 @@ const { executablePath } = require("puppeteer");
     "button.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform"
   );
 
-  // Wait for page load after login
-  await page.waitForNavigation();
-
   // Go to Naukri.com Profile Page
-  await page.goto("https://www.naukri.com/mnjuser/profile", { timeout: 0 });
-
+  await page.goto("https://www.naukri.com/mnjuser/profile");
   // Click on Resume Headline Edit button
   await page.waitForSelector("#lazyResumeHead span.edit.icon");
   await page.click("#lazyResumeHead span.edit.icon");
