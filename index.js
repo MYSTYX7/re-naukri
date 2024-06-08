@@ -5,9 +5,14 @@ require("dotenv").config();
 let EMAIL = process.env.EMAIL_ID;
 let PASS = process.env.PASSWORD;
 
+const { executablePath } = require("puppeteer");
+
 (async () => {
   // Launch the browser
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({
+    headless: true,
+    executablePath: executablePath(),
+  });
   const page = await browser.newPage();
 
   // Setup UserAgent and HTTPHeaders to avoid Bot Detection
