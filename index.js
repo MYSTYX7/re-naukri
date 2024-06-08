@@ -24,7 +24,7 @@ const { executablePath } = require("puppeteer");
   });
 
   // Go to Naukri.com Login Page
-  await page.goto("https://login.naukri.com/nLogin/Login.php");
+  await page.goto("https://login.naukri.com/nLogin/Login.php", { timeout: 0 });
 
   // Enter the email id and password in respective fields
   await page.waitForSelector("input#usernameField");
@@ -42,7 +42,7 @@ const { executablePath } = require("puppeteer");
   await page.waitForNavigation();
 
   // Go to Naukri.com Profile Page
-  await page.goto("https://www.naukri.com/mnjuser/profile");
+  await page.goto("https://www.naukri.com/mnjuser/profile", { timeout: 0 });
 
   // Click on Resume Headline Edit button
   await page.waitForSelector("#lazyResumeHead span.edit.icon");
