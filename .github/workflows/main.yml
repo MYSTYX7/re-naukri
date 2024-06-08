@@ -1,9 +1,9 @@
 name: Naukri.com Profile Updater
 
 on:
-  # Schedule the workflow to run every day at 8:00 AM UTC
+  # Schedule the workflow to run every 5 minutes
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   update-profile:
@@ -26,8 +26,7 @@ jobs:
 
       # Run index.js
       - name: Run index.js
-        run: |
-          node index.js
+        run: node index.js
         env:
           EMAIL_ID: ${{ secrets.EMAIL_ID }}
           PASSWORD: ${{ secrets.PASSWORD }}
