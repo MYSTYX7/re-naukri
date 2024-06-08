@@ -1,9 +1,9 @@
 name: Naukri.com Updater
 
 on:
-  # Schedule the workflow to run every 5 minutes
+  # Schedule the workflow to run every 6 minutes
   schedule:
-    - cron: "*/2 * * * *"
+    - cron: "*/6 * * * *"
 
 jobs:
   update-profile:
