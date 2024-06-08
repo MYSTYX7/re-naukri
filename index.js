@@ -10,7 +10,7 @@ const { executablePath } = require("puppeteer");
 (async () => {
   // Launch the browser
   const browser = await puppeteer.launch({
-    headless: true, // Change it to false if you want to see the bot working on local machine
+    headless: false, // Change it to false if you want to see the bot working on local machine
     executablePath: executablePath(),
   });
   const page = await browser.newPage();
@@ -34,30 +34,33 @@ const { executablePath } = require("puppeteer");
   await page.type("input#passwordField", PASS);
 
   // Click on the login button
-  await page.evaluate((b) =>
-    b.click(
-      "button.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform"
-    )
+  await page.click(
+    "button.waves-effect.waves-light.btn-large.btn-block.btn-bold.blue-btn.textTransform"
   );
 
+  // Wait for page load after login
+  await page.waitForNavigation();
+
   // Go to Naukri.com Profile Page
-  await page.goto("https://www.naukri.com/mnjuser/profile");
+  await page.goto("https://www.naukri.com/mnjuser/profile", {
+    waitUntil: "load",
+    timeout: 0,
+  });
   // Click on Resume Headline Edit button
   await page.waitForSelector("#lazyResumeHead span.edit.icon");
-  await page.evaluate((b) => b.click("#lazyResumeHead span.edit.icon"));
+  await page.click("#lazyResumeHead span.edit.icon");
 
   // Select, Copy and Paste back the Headline text
   await page.waitForSelector("#resumeHeadlineTxt");
   const currentText = await page.$eval("#resumeHeadlineTxt", (el) => el.value);
   const textarea = await page.$("#resumeHeadlineTxt");
-  await textarea.evaluate((b) => b.click({ clickCount: 3 }));
+  await textarea.click({ clickCount: 3 });
   await textarea.press("Backspace");
   await textarea.type(currentText);
 
   // Click on the save button
-  await page.evaluate((b) =>
-    b.click("div.row.form-actions div.action.s12 button.btn-dark-ot")
-  );
+  await page.click("div.row.form-actions div.action.s12 button.btn-dark-ot");
+
   // Close the browser
   await browser.close();
 })();
