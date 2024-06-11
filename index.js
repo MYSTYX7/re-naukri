@@ -46,6 +46,7 @@ const { executablePath } = require("puppeteer");
     waitUntil: "load",
     timeout: 0,
   });
+  
   // Click on Resume Headline Edit button
   await page.waitForSelector("#lazyResumeHead span.edit.icon");
   await page.click("#lazyResumeHead span.edit.icon");
