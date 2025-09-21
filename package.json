@@ -1,7 +1,7 @@
 {
   "name": "re-naukri",
-  "version": "1.1.0",
-  "description": "This Node.js script automates the process of updating your Naukri.com profile's resume headline using Puppeteer.",
+  "version": "2.1.0",
+  "description": "This Node.js script automates the process of updating your Naukri.com profile's resume headline using Puppeteer and hosts on AWS Lambda.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +12,7 @@
   "author": "MYSTYX",
   "license": "ISC",
   "dependencies": {
+    "chrome-aws-lambda": "^10.1.0",
     "dotenv": "^16.4.5",
     "puppeteer": "^22.10.0",
     "puppeteer-core": "^22.10.0",
